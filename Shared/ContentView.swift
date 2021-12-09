@@ -17,63 +17,196 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+            VStack{
+                
+                HStack{
+                    Button(action: {},
+                           label: {
+                        Text("AC")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("+/-")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("%")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("÷")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
                 }
-                .onDelete(perform: deleteItems)
+                HStack{
+                    Button(action: {},
+                           label: {
+                        Text("7")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("8")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("9")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("x")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                }
+                HStack{
+                    Button(action: {},
+                           label: {
+                        Text("4")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("5")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("6")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("-")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                }
+                HStack{
+                    Button(action: {},
+                           label: {
+                        Text("1")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("2")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("3")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("+")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                }
+                HStack{
+                    Button(action: {},
+                           label: {
+                        Text("0")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .frame(width: 100)
+                            .background(.secondary)
+                            .clipShape(Capsule())
+                    })
+                        
+
+                    
+                    Button(action: {},
+                           label: {
+                        Text(".")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: {},
+                           label: {
+                        Text("=")
+                            .padding()
+                            .foregroundColor(.primary)
+                            .background(.secondary)
+                            .clipShape(Circle())
+                    })
+
+                }
             }
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
-        }
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
 }
 
 private let itemFormatter: DateFormatter = {
@@ -85,6 +218,10 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Group {
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().previewDevice("iPad Pro (12.9-inch) (5th generation)").environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
